@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use GrahamCampbell\Markdown\Facades\Markdown;
 
 use App\Post;
 
@@ -17,6 +18,7 @@ class PostsController extends Controller
 
     public function show(Post $post)
     {
-        return view('posts.show', ['post' => $post]);
+        $content = Markdown::convertToHtml($post->body);
+        return view('posts.show', compact('post', 'content'));
     }
 }
