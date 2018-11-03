@@ -1,15 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use GrahamCampbell\Markdown\Facades\Markdown;
 
 use App\Post;
+use GrahamCampbell\Markdown\Facades\Markdown;
 
 class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::first()->get();
+        $posts = Post::latest()->get();
 
         return view('posts.index', [
             'posts' => $posts,
@@ -20,5 +20,23 @@ class PostsController extends Controller
     {
         $content = Markdown::convertToHtml($post->body);
         return view('posts.show', compact('post', 'content'));
+    }
+
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function store()
+    {
+        $this->validate(request(), [
+            'title' => 'required',
+            'subtitle' => 'required',
+            'body' => 'required',
+        ]);
+
+        Post::create(request(['title', 'subtitle', 'body']));
+
+        return redirect('/');
     }
 }
