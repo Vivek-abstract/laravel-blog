@@ -7,13 +7,17 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+    
     public function index()
     {
-        $posts = Post::latest()->get();
 
-        return view('posts.index', [
-            'posts' => $posts,
-        ]);
+        $posts = Post::latest()->filter(request(['month', 'year']))->get();
+
+        return view('posts.index', compact('posts'));
     }
 
     public function show(Post $post)
@@ -35,7 +39,7 @@ class PostsController extends Controller
             'body' => 'required',
         ]);
 
-        Post::create(request(['title', 'subtitle', 'body']));
+        auth()->user()->publish(new Post(request(['title', 'subtitle','body'])));
 
         return redirect('/');
     }

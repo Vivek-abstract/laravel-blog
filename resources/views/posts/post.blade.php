@@ -7,6 +7,7 @@
             {{ $post->subtitle }}
         </h3>
     </a>
-    <p class="post-meta">{{ $post->created_at->format("jS F, Y") }}</p>
+    <p class="post-meta">Posted by <strong>{{ $post->user->name }}</strong> on 
+        {{ $post->created_at->format("jS F, Y") }}</p>
 </div>
 <hr>

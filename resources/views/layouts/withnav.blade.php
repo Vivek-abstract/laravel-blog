@@ -28,7 +28,7 @@
   <body>
 
     <!-- Navigation -->
-    @include('layouts.nav')
+    @include('layouts.blacknav')
 
     <!-- Page Header -->
     @yield('hero-image')

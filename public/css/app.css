@@ -103,6 +103,14 @@ img::-moz-selection {
   color: #343a40;
 }
 
+.blackNav .navbar-toggler {
+  color: white !important;
+}
+
+.blackNav .navbar-brand {
+  color: white !important;
+}
+
 #mainNav .navbar-nav > li.nav-item > a {
   font-size: 12px;
   font-weight: 800;
@@ -431,5 +439,13 @@ footer .copyright {
 .btn-lg {
   font-size: 16px;
   padding: 25px 35px;
+}
+
+.padding {
+  padding-top: 90px;
+}
+
+.link {
+  text-decoration: underline;
 }
 
