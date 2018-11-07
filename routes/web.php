@@ -6,9 +6,9 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/contact', 'ContactsController@index');
+
+Route::post('/contact', "ContactsController@store");
 
 Route::get('/posts/create', "PostsController@create");
 
