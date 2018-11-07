@@ -12,10 +12,10 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about">About</a>
+                    <a class="nav-link" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact">Contact</a>
+                    <a class="nav-link" href="/contact">Contact</a>
                 </li>
 
                 @if(auth()->check())
@@ -26,6 +26,7 @@
                           {{ Auth::user()->name }}
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/posts/create">Create Post</a>
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </li>

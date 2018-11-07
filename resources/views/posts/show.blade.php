@@ -1,24 +1,25 @@
 @extends('layouts.master') 
 @section('hero-image')
-<header class="masthead" style="background-image: url('/img/post-images/{{ $post->image }}')">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h1>{{ $post->title }}</h1>
-                    <span class="subheading">{{ $post->subtitle }}</span>
-                </div>
+
+<header class="masthead">
+    <div class="jumbotron jumbotron-fluid" style="background-image: url('/img/post-images/{{$post->image}}')">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="site-heading">
+                <h1 class="display-4 heading">{{$post->title}}</h1>
+                <p>{{$post->subtitle}}</p>
             </div>
         </div>
     </div>
 </header>
+<a href="#content"><i class="fas fa-angle-down fa-4x bottom"></i></a>
+
 @endsection
  
 @section('content')
 
 <article>
-    <div class="container">
+    <div class="container" id="content">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <?php echo $content ?>
@@ -48,14 +49,10 @@
                 </li>
             </ul>
 
-            @endforeach 
-            
-            @endif
+            @endforeach @endif
 
 
-            <hr> 
-            
-            @if (auth()->check())
+            <hr> @if (auth()->check())
 
             <div class="card">
                 <div class="card-block">
@@ -71,7 +68,7 @@
                         </div>
 
                     </form>
-                    @include('layouts.errors')
+    @include('layouts.errors')
                 </div>
             </div>
 

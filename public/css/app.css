@@ -292,6 +292,12 @@ header.masthead .post-heading .meta a {
   }
 }
 
+@media (max-width: 576px) {
+  .heading {
+    margin-top: 1em !important;
+  }
+}
+
 .post-preview > a {
   color: #212529;
 }
@@ -457,5 +463,48 @@ footer .copyright {
   opacity: 1;
   -webkit-transition: all 2s ease;
   transition: all 2s ease;
+}
+
+.jumbotron {
+  color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #212529;
+  opacity: 0.5;
+}
+
+.site-heading {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heading {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.subheading {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+  color: white;
 }
 

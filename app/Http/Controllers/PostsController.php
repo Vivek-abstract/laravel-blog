@@ -11,7 +11,7 @@ class PostsController extends Controller
     {
         $this->middleware('auth')->except(['index', 'show']);
     }
-    
+
     public function index()
     {
 
@@ -33,15 +33,22 @@ class PostsController extends Controller
 
     public function store()
     {
+        $file = request()->file('image');
+        $name = $file->getClientOriginalName();
+        $file->move('img/post-images', $name);
+
         $this->validate(request(), [
             'title' => 'required',
             'subtitle' => 'required',
             'body' => 'required',
         ]);
 
-        auth()->user()->publish(new Post(request(['title', 'subtitle','body'])));
+        $request = request()->all();
+        $request['image'] = $name;
 
-        session()->flash('message','Post created successfully');
+        auth()->user()->publish(new Post($request));
+
+        session()->flash('message', 'Post created successfully');
 
         return redirect('/');
     }

@@ -6,7 +6,7 @@
         Menu
         <i class="fas fa-bars"></i>
         </button>
-        
+
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -18,7 +18,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="contact">Contact</a>
                 </li>
-                
+
                 @if(auth()->check())
 
                 <li class="nav-item dropdown">
@@ -27,10 +27,11 @@
                           {{ Auth::user()->name }}
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/posts/create">Create Post</a>
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </li>
-                
+
                 @else
 
                 <li class="nav-item">

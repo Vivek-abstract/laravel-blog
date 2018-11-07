@@ -1,26 +1,17 @@
-@extends('layouts.master') 
-@section('hero-image')
-
-<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h1>Create post</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-@endsection
- 
+@extends('layouts.withnav') 
 @section('content')
+
+<div class="padding"></div>
 
 <div class="container">
     <div class="row">
+    </div>
+    <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <form method="POST" action="/posts">
+            <h1>Create Post</h1>
+
+            <hr>
+            <form method="POST" action="/posts" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -37,13 +28,17 @@
                     <textarea name="body" id="body" class="form-control" rows="10" required></textarea>
                 </div>
 
+                <div class="form-group">
+                    <label for="image">Banner</label>
+                    <input type="file" class="form-control-file" name="image" required>
+                </div>
+
                 <br>
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-
-                @include('layouts.errors')
+    @include('layouts.errors')
             </form>
         </div>
     </div>
