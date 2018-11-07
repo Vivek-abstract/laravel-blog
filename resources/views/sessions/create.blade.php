@@ -22,6 +22,9 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
+<br>
+<br>
+        <h5 class="text-info">Not a User? <a class="link" href="/register">Register</a></h5>
 
     </form>
 

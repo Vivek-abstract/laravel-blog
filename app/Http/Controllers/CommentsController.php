@@ -12,7 +12,9 @@ class CommentsController extends Controller
 
         $this->validate(request(), ['body' => 'required|min:2']);
 
-        $post->addComment(request('body'));
+        $post->addComment($post->id, request(['body']));
+
+        session()->flash('message','Comment added successfully');
 
         return back();
     }

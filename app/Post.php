@@ -1,7 +1,9 @@
 <?php
 
 namespace App;
+
 use Carbon\Carbon;
+
 class Post extends Model
 {
     public function comments()
@@ -9,17 +11,22 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function addComment($body)
+    public function addComment($id, $comment)
     {
-
-        $this->comments()->create(compact('body'));
+        $this->comments()->create([
+            'post_id' => $id,
+            'body' => $comment['body'],
+            'user_id' => auth()->id(),
+        ]);
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function scopeFilter($query, $filters) {
+    public function scopeFilter($query, $filters)
+    {
         if (isset($filters['month'])) {
             $query->whereMonth('created_at', Carbon::parse($filters['month'])->month);
         }
@@ -30,9 +37,10 @@ class Post extends Model
 
     }
 
-    public static function archives() {
+    public static function archives()
+    {
         return static::selectRaw('monthname(created_at) month, year(created_at) year, count(*)')
-                    ->groupBy('year', 'month')
-                    ->orderByRaw('min(created_at)')->get();
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(created_at)')->get();
     }
 }

@@ -24,12 +24,16 @@ class SessionsController extends Controller
             ]);
         }
 
+        session()->flash('message','Logged in successfully');
+
         return redirect()->home();
     }
 
     public function destroy()
     {
         auth()->logout();
+
+        session()->flash('message','Logged out');
 
         return redirect()->home();
     }

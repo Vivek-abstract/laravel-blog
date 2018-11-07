@@ -19,9 +19,23 @@
                 </li>
 
                 @if(auth()->check())
-                <li class="nav-item">
-                    <a class="nav-link" href="contact">{{ Auth::user()->name }}</a>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                          {{ Auth::user()->name }}
+                        </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
                 </li>
+                
+                @else
+
+                <li class="nav-item">
+                    <a class="nav-link" href="login">Login</a>
+                </li>
+
                 @endif
             </ul>
         </div>

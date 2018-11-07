@@ -22,6 +22,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <?php echo $content ?>
+                <h4>- {{ $post->user->name }}</h4>
             </div>
         </div>
     </div>
@@ -30,37 +31,56 @@
 
 <hr>
 
-<div class="col-lg-8 col-md-10 mx-auto">
 
-    @if (count($post->comments))
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
 
-    <h3>Comments</h3>
-    @foreach ($post->comments as $comment)
+            @if (count($post->comments))
 
-    <ul class="list-group">
-        <li class="list-group-item">
-            <strong>{{ $comment->created_at->diffForHumans() }}</strong>&nbsp; {{ $comment->body }}
-        </li>
-    </ul>
+            <h3>Comments</h3>
+            @foreach ($post->comments as $comment)
 
-    @endforeach @endif
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>{{ $comment->user->name }}</strong><br> {{ $comment->body }} <br>
+                    <small>{{ $comment->created_at->diffForHumans() }}</small>
+                </li>
+            </ul>
 
-    <hr>
+            @endforeach 
+            
+            @endif
 
-    <div class="card">
-        <div class="card-block">
-            <form method="POST" action="/posts/{{ $post->id }}/comments">
-                @csrf
-                <div class="form-group">
-                    <textarea name="body" class="form-control" placeholder="Your comment here." required></textarea>
+
+            <hr> 
+            
+            @if (auth()->check())
+
+            <div class="card">
+                <div class="card-block">
+                    <h5>Share your thoughts</h5>
+                    <form method="POST" action="/posts/{{ $post->id }}/comments">
+                        @csrf
+                        <div class="form-group">
+                            <textarea name="body" class="form-control" placeholder="Your comment here." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Add Comment</button>
+                        </div>
+
+                    </form>
+                    @include('layouts.errors')
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Add Comment</button>
-                </div>
-                
-            </form>
-            @include('layouts.errors')
+            @else
+
+            <h5><a href="/login" class="link">Login</a> to share your thoughts on this article</h5>
+
+            @endif
+
         </div>
     </div>
 </div>

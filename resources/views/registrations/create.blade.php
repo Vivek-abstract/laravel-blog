@@ -33,6 +33,9 @@
     </form>
 
     <br>
+    <h5 class="text-info">Already a user? <a class="link" href="/login">Sign In</a></h5>
+
+    <br>
     @include('layouts.errors')
 
     
