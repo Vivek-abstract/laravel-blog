@@ -15,17 +15,17 @@
                 @csrf
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" id='title' name="title" required>
+                    <input type="text" class="form-control" id='title' name="title" value="{{ old('title') }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="title">Subtitle</label>
-                    <input type="text" class="form-control" id='title' name="subtitle">
+                    <input type="text" class="form-control" id='title' name="subtitle" value="{{ old('subtitle') }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="body">Body</label>
-                    <textarea name="body" id="body" class="form-control" rows="10" required></textarea>
+                    <textarea name="body" id="body" class="form-control" rows="10" required>{{ old('body') }}</textarea>
                 </div>
 
                 <div class="form-group">
