@@ -494,3 +494,17 @@ footer .copyright {
     right: 30px;
     color: white;
 }
+
+img {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+blockquote {
+    position: relative;
+    padding-left: 1em;
+    border-left: 0.2em solid lighten(black, 40%);
+    font-family: 'Roboto', serif;
+    font-weight: 100;
+  }
+  

@@ -80,7 +80,7 @@ class PostsController extends Controller
 
         session()->flash('message', 'Post updated successfully');
 
-        return redirect('/');
+        return redirect("/posts/$post->id");
     }
 
     public function destroy(Post $post)
