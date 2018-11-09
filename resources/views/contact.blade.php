@@ -13,21 +13,23 @@
                 @csrf
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name">
+                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email">
+                    <input type="email" class="form-control" name="email" value="{{ old('email') }}"required>
                 </div>
 
                 <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea class="form-control" name="message" rows="5"></textarea>
+                    <label for="body">Message</label>
+                    <textarea class="form-control" name="body" rows="5" required>{{ old('body') }}</textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            <br>
+            @include('layouts.errors')
         </div>
     </div>
 </div>

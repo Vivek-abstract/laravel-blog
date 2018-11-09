@@ -30,7 +30,9 @@
 
 </article>
 
+<br>
 <hr>
+<br>
 
 
 <div class="container">
@@ -38,7 +40,6 @@
         <div class="col-lg-8 col-md-10 mx-auto">
 
             @if (count($post->comments))
-
                 <h3>Comments</h3>
 
                 @foreach ($post->comments as $comment)
@@ -54,12 +55,9 @@
             
             @endif
 
-            <hr> 
-            
+            <br>
             @if (auth()->check())
 
-                <div class="card">
-                    <div class="card-block">
                         <h5>Share your thoughts</h5>
                         <form method="POST" action="/posts/{{ $post->id }}/comments">
                             @csrf
@@ -73,8 +71,6 @@
 
                         </form>
                         @include('layouts.errors')
-                    </div>
-                </div>
 
             @else
 

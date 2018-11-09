@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Mail\Welcome;
+use App\Mail\Contact;
 use App\User;
 
 class ContactsController extends Controller
@@ -13,8 +13,13 @@ class ContactsController extends Controller
 
     public function store()
     {
-        $user = User::find(10);
-        \Mail::to($user)->send(new Welcome);
+        request()->validate([
+            'name'=>'required',
+            'email'=>'required|email',
+            'body'=>'required'
+        ]);
+
+        \Mail::to('vivekbgawande@gmail.com')->send(new Contact(request(['name','email','body'])));
         return back()->with('message', "Message sent successfully");
     }
 }

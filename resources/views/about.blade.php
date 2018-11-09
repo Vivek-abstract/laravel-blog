@@ -20,16 +20,24 @@
 <div class="container" id="content">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit,
-                fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error,
-                repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus,
-                minus!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque
-                esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+            <h1>Hello</h1>
+            <p>I am a student studying Computer Engineering from 
+                Shah And Anchor Kutchhi Engineering College. I like developing 
+                software that has an impact on people's lives. I like learning 
+                new things and improving my knowledge everyday.</p>
+            <p>I like playing Chess and listening to music in my free time. I'm 
+                a huge food lover (who isn't?). I also like teaching other people 
+                how to code. I recently gave a hands on workshop on Android 
+                development using the Ionic Framework to over 40 students.</p>
+            <h2 class="mb-3">My Favourite Quotes</h2>
+            <ul>
+                <li>Everything was impossible until someone did it.</li>
+                <li>If it is to be, it's upto me</li>
+                <li>Be who you are and say what you feel cause' those who mind 
+                    don't matter, and those who matter, don't mind</li>
+            </ul>
         </div>
     </div>
 </div>
 
-<hr>
 @endsection
