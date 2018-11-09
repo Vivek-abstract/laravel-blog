@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomeAgain;
 use App\User;
 use Illuminate\Http\Request;
-use App\Mail\Welcome;
 
 class RegistrationsController extends Controller
 {
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('guest');
     }
 
@@ -37,9 +38,11 @@ class RegistrationsController extends Controller
         // Sign in
         auth()->login($user);
 
-        session()->flash('message','Logged in successfully');
+        session()->flash('message', 'Logged in successfully');
 
-        \Mail::to($user)->send(new Welcome);
+        $data = ['name' => $user->name];
+
+        \Mail::to($user)->send(new WelcomeAgain($data));
 
         // Redirect back
         return redirect()->home();

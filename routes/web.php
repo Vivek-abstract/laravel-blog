@@ -20,9 +20,7 @@ Route::post('/posts/{post}/comments', "CommentsController@store");
 
 Route::get('/posts/{post}/edit', 'PostsController@edit');
 
-Route::group(['middleware' => 'web'], function () {
-    Route::patch('/posts/{post}', ['as' => 'update', 'uses' => 'PostsController@update']);
-});
+Route::patch('/posts/{post}', 'PostsController@update');
 
 Route::delete('/posts/{post}', 'PostsController@destroy');
 

@@ -6,7 +6,7 @@
         <div class="overlay"></div>
         <div class="container">
             <div class="site-heading">
-                <h1 class="display-4 heading">{{$post->title}}</h1>
+                <h2 class="display-4 heading">{{$post->title}}</h2>
                 <p>{{$post->subtitle}}</p>
             </div>
         </div>
@@ -39,42 +39,46 @@
 
             @if (count($post->comments))
 
-            <h3>Comments</h3>
-            @foreach ($post->comments as $comment)
+                <h3>Comments</h3>
 
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <strong>{{ $comment->user->name }}</strong><br> {{ $comment->body }} <br>
-                    <small>{{ $comment->created_at->diffForHumans() }}</small>
-                </li>
-            </ul>
+                @foreach ($post->comments as $comment)
 
-            @endforeach @endif
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>{{ $comment->user->name }}</strong><br> {{ $comment->body }} <br>
+                            <small>{{ $comment->created_at->diffForHumans() }}</small>
+                        </li>
+                    </ul>
 
+                @endforeach 
+            
+            @endif
 
-            <hr> @if (auth()->check())
+            <hr> 
+            
+            @if (auth()->check())
 
-            <div class="card">
-                <div class="card-block">
-                    <h5>Share your thoughts</h5>
-                    <form method="POST" action="/posts/{{ $post->id }}/comments">
-                        @csrf
-                        <div class="form-group">
-                            <textarea name="body" class="form-control" placeholder="Your comment here." required></textarea>
-                        </div>
+                <div class="card">
+                    <div class="card-block">
+                        <h5>Share your thoughts</h5>
+                        <form method="POST" action="/posts/{{ $post->id }}/comments">
+                            @csrf
+                            <div class="form-group">
+                                <textarea name="body" class="form-control" placeholder="Your comment here." required></textarea>
+                            </div>
 
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Add Comment</button>
-                        </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Add Comment</button>
+                            </div>
 
-                    </form>
-    @include('layouts.errors')
+                        </form>
+                        @include('layouts.errors')
+                    </div>
                 </div>
-            </div>
 
             @else
 
-            <h5><a href="/login" class="link">Login</a> to share your thoughts on this article</h5>
+                <h5><a href="/login" class="link">Login</a> to share your thoughts on this article</h5>
 
             @endif
 

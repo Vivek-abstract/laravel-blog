@@ -294,7 +294,7 @@ header.masthead .post-heading .meta a {
 
 @media (max-width: 576px) {
   .heading {
-    margin-top: 1em !important;
+    margin-top: 0.5em !important;
   }
 }
 

@@ -65,14 +65,18 @@ class PostsController extends Controller
             'title' => 'required',
             'subtitle' => 'required',
             'body' => 'required',
-            'image' => 'required|image|mimes:jpeg,bmp,png',
+            'image' => 'image|mimes:jpeg,bmp,png',
         ]);
 
-        $file = request()->file('image');
-        $name = $file->getClientOriginalName();
-        $file->move('img/post-images', $name);
-        
-        $post->update(request(['title', 'subtitle', 'body']) + ['image' => $name]);
+        if (request('image')) {
+            $file = request()->file('image');
+            $name = $file->getClientOriginalName();
+            $file->move('img/post-images', $name);
+
+            $post->update(request(['title', 'subtitle', 'body']) + ['image' => $name]);
+        } else {
+            $post->update(request(['title', 'subtitle', 'body']));
+        }
 
         session()->flash('message', 'Post updated successfully');
 

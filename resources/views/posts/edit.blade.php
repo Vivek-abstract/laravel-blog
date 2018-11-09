@@ -35,7 +35,7 @@
 
                 <div class="form-group">
                     <label for="image">Banner</label>
-                    <input type="file" class="form-control-file" name="image" required>
+                    <input type="file" class="form-control-file" name="image">
                 </div>
 
                 <br>
