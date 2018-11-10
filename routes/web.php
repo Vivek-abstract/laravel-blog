@@ -33,3 +33,7 @@ Route::get('/login', 'SessionsController@create')->name('login');
 Route::post('/login', 'SessionsController@store');
 
 Route::get('/logout', 'SessionsController@destroy');
+
+Route::get('/verify', 'PostsController@showUnverified');
+
+Route::post('/verify/{post}', 'PostsController@verify');

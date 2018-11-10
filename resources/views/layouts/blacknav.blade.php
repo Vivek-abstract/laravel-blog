@@ -28,6 +28,11 @@
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/posts/create">Create Post</a>
+
+                        @if (auth()->user()->isAdmin())
+                            <a class="dropdown-item" href="/verify">Activate Posts</a>
+                        @endif
+
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </li>

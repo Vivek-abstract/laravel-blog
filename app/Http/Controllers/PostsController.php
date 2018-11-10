@@ -10,12 +10,15 @@ class PostsController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('verified-post')->only('show');
+        $this->middleware('admin')->only(['showUnverified', 'verify']);
+        $this->middleware('author')->only(['edit', 'update', 'destroy']);
     }
 
     public function index()
     {
 
-        $posts = Post::latest()->filter(request(['month', 'year']))->get();
+        $posts = Post::latest()->filter(request(['month', 'year']))->verified()->get();
 
         return view('posts.index', compact('posts'));
     }
@@ -49,7 +52,7 @@ class PostsController extends Controller
 
         auth()->user()->publish(new Post($request));
 
-        session()->flash('message', 'Post created successfully');
+        session()->flash('message', 'Your post is under review and will be uploaded shortly.');
 
         return redirect('/');
     }
@@ -88,6 +91,22 @@ class PostsController extends Controller
         $post->delete();
 
         session()->flash('message', 'Post deleted successfully');
+
+        return redirect()->home();
+    }
+
+    public function showUnverified()
+    {
+        $posts = Post::latest()->filter(request(['month', 'year']))->unVerified()->get();
+        return view('posts.unverified', compact('posts'));
+    }
+
+    public function verify(Post $post)
+    {
+        $post->verified = 1;
+        $post->save();
+
+        session()->flash('message', 'Post activated successfully');
 
         return redirect()->home();
     }

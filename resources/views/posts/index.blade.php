@@ -30,7 +30,7 @@
         <div class="col-lg-8 col-md-8 mx-auto">
 
             @if (count($posts) == 0)
-                <h4>No posts from {{ request('month') }}, {{ request('year') }}</h4>
+                <h4>No posts to show</h4>
             @else
                 @if (request('month') || request('year'))
                     <h4>Posts from {{ request('month') }}, {{ request('year') }}</h4>

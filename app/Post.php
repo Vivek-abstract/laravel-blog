@@ -37,6 +37,14 @@ class Post extends Model
 
     }
 
+    public function scopeVerified($query) {
+        $query->where('verified','=', 1);
+    }
+
+    public function scopeUnVerified($query) {
+        $query->where('verified','=', 0);
+    }
+
     public static function archives()
     {
         return static::selectRaw("to_char(created_at, 'Month') AS month, to_char(created_at, 'YYYY') AS year    ")

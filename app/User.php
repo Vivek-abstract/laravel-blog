@@ -36,4 +36,8 @@ class User extends Authenticatable
     {
         $this->posts()->save($post);
     }
+
+    public function isAdmin() {
+        return $this->role === 'admin';
+    }
 }

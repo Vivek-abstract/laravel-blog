@@ -56,6 +56,18 @@
                 </div>
             </form>
 
+            @if (auth()->user()->isAdmin())
+                
+                <form action="/verify/{{ $post->id }}" method="post">
+                    @csrf 
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Activate Post</button>
+                    </div>
+                </form>
+
+            @endif
+
             @include('layouts.errors')
         </div>
     </div>
