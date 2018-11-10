@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use GrahamCampbell\Markdown\Facades\Markdown;
-
+use App\Mail\Contact;
 class PostsController extends Controller
 {
     public function __construct()
@@ -53,6 +53,12 @@ class PostsController extends Controller
         auth()->user()->publish(new Post($request));
 
         session()->flash('message', 'Your post is under review and will be uploaded shortly.');
+
+        \Mail::to('vivekbgawande@gmail.com')->send(new Contact([
+            'name'=>auth()->user()->name,
+            'email'=>auth()->user()->email,
+            'body'=>request('body')
+        ]));
 
         return redirect('/');
     }
