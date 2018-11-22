@@ -78,7 +78,7 @@ class PostsController extends Controller
         ]);
 
         if (request('image')) {
-            $path = request()->file('image')->store('my-file', 's3', 'public');
+            $path = request()->file('image')->store('post-images', 's3', 'public');
             $url = Storage::disk('s3')->url($path);
 
             $post->update(request(['title', 'subtitle', 'body']) + ['image' => $url]);
