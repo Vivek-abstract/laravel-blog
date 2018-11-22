@@ -2,7 +2,7 @@
 @section('hero-image')
 
 <header class="masthead">
-    <div class="jumbotron jumbotron-fluid" style="background-image: url('/img/post-images/{{$post->image}}')">
+    <div class="jumbotron jumbotron-fluid" style="background-image: url('{{ $post->image }}')">
         <div class="overlay"></div>
         <div class="container">
             <div class="site-heading">
@@ -15,7 +15,7 @@
 <a href="#content"><i class="fas fa-angle-down fa-4x bottom"></i></a>
 
 @endsection
- 
+
 @section('content')
 
 <article>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Contact;
 use App\Post;
 use GrahamCampbell\Markdown\Facades\Markdown;
-use App\Mail\Contact;
+use Illuminate\Support\Facades\Storage;
+
 class PostsController extends Controller
 {
     public function __construct()
@@ -17,7 +19,6 @@ class PostsController extends Controller
 
     public function index()
     {
-
         $posts = Post::latest()->filter(request(['month', 'year']))->verified()->get();
 
         return view('posts.index', compact('posts'));
@@ -43,21 +44,20 @@ class PostsController extends Controller
             'image' => 'required|image|mimes:jpeg,bmp,png',
         ]);
 
-        $file = request()->file('image');
-        $name = $file->getClientOriginalName();
-        $file->move('img/post-images', $name);
+        $path = request()->file('image')->store('post-images', 's3');
+        $url = Storage::disk('s3')->url($path);
 
         $request = request()->all();
-        $request['image'] = $name;
+        $request['image'] = $url;
 
         auth()->user()->publish(new Post($request));
 
         session()->flash('message', 'Your post is under review and will be uploaded shortly.');
 
         \Mail::to('vivekbgawande@gmail.com')->send(new Contact([
-            'name'=>auth()->user()->name,
-            'email'=>auth()->user()->email,
-            'body'=>request('body')
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email,
+            'body' => request('body'),
         ]));
 
         return redirect('/');
@@ -78,11 +78,10 @@ class PostsController extends Controller
         ]);
 
         if (request('image')) {
-            $file = request()->file('image');
-            $name = $file->getClientOriginalName();
-            $file->move('img/post-images', $name);
+            $path = request()->file('image')->store('my-file', 's3', 'public');
+            $url = Storage::disk('s3')->url($path);
 
-            $post->update(request(['title', 'subtitle', 'body']) + ['image' => $name]);
+            $post->update(request(['title', 'subtitle', 'body']) + ['image' => $url]);
         } else {
             $post->update(request(['title', 'subtitle', 'body']));
         }
