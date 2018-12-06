@@ -6,6 +6,12 @@ use Carbon\Carbon;
 
 class Post extends Model
 {
+
+    public function getRouteKeyName()
+    {
+        return 'url_title';
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
@@ -37,18 +43,21 @@ class Post extends Model
 
     }
 
-    public function scopeVerified($query) {
-        $query->where('verified','=', 1);
+    public function scopeVerified($query)
+    {
+        $query->where('verified', '=', 1);
     }
 
-    public function scopeUnVerified($query) {
-        $query->where('verified','=', 0);
+    public function scopeUnVerified($query)
+    {
+        $query->where('verified', '=', 0);
     }
 
     public static function archives()
     {
-        return static::selectRaw("to_char(created_at, 'Month') AS month, to_char(created_at, 'YYYY') AS year    ")
+        return static::selectRaw("to_char(created_at, 'Month') AS month, to_char(created_at, 'YYYY') AS year")
             ->groupBy('year', 'month')
-            ->orderByRaw('min(created_at)')->get();
+            ->orderByRaw('min(created_at)')
+            ->verified()->get();
     }
 }

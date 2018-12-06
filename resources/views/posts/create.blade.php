@@ -24,6 +24,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="title">URL Title</label>
+                    <input type="text" class="form-control" id='title' name="url_title" value="{{ old('url_title') }}" required>
+                </div>
+
+                <div class="form-group">
                     <label for="body">Body</label>
                     <textarea name="body" id="body" class="form-control" rows="10" required>{{ old('body') }}</textarea>
                 </div>

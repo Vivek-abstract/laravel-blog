@@ -13,7 +13,6 @@ class PostsController extends Controller
     {
         $this->middleware('auth')->except(['index', 'show']);
         $this->middleware('verified-post')->only('show');
-        $this->middleware('admin')->only(['showUnverified', 'verify']);
         $this->middleware('author')->only(['edit', 'update', 'destroy']);
     }
 
@@ -40,6 +39,7 @@ class PostsController extends Controller
         $this->validate(request(), [
             'title' => 'required',
             'subtitle' => 'required',
+            'url_title' => 'required',
             'body' => 'required',
             'image' => 'required|image|mimes:jpeg,bmp,png',
         ]);
@@ -47,7 +47,7 @@ class PostsController extends Controller
         $path = request()->file('image')->store('post-images', 's3');
         $url = Storage::disk('s3')->url($path);
 
-        $request = request()->all();
+        $request = request(['title', 'subtitle', 'url_title', 'body']);
         $request['image'] = $url;
 
         auth()->user()->publish(new Post($request));
@@ -73,6 +73,7 @@ class PostsController extends Controller
         $this->validate(request(), [
             'title' => 'required',
             'subtitle' => 'required',
+            'url_title' => 'required',
             'body' => 'required',
             'image' => 'image|mimes:jpeg,bmp,png',
         ]);
@@ -81,14 +82,14 @@ class PostsController extends Controller
             $path = request()->file('image')->store('post-images', 's3', 'public');
             $url = Storage::disk('s3')->url($path);
 
-            $post->update(request(['title', 'subtitle', 'body']) + ['image' => $url]);
+            $post->update(request(['title', 'subtitle', 'url_title', 'body']) + ['image' => $url]);
         } else {
-            $post->update(request(['title', 'subtitle', 'body']));
+            $post->update(request(['title', 'subtitle', 'url_title', 'body']));
         }
 
         session()->flash('message', 'Post updated successfully');
 
-        return redirect("/posts/$post->id");
+        return redirect("/posts/$post->url_title");
     }
 
     public function destroy(Post $post)
@@ -100,19 +101,4 @@ class PostsController extends Controller
         return redirect()->home();
     }
 
-    public function showUnverified()
-    {
-        $posts = Post::latest()->filter(request(['month', 'year']))->unVerified()->get();
-        return view('posts.unverified', compact('posts'));
-    }
-
-    public function verify(Post $post)
-    {
-        $post->verified = 1;
-        $post->save();
-
-        session()->flash('message', 'Post activated successfully');
-
-        return redirect()->home();
-    }
 }

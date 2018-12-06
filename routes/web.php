@@ -34,6 +34,6 @@ Route::post('/login', 'SessionsController@store');
 
 Route::get('/logout', 'SessionsController@destroy');
 
-Route::get('/verify', 'PostsController@showUnverified');
+Route::get('/verify', 'VerifiedPostsController@index');
 
-Route::post('/verify/{post}', 'PostsController@verify');
+Route::post('/verify/{post}', 'VerifiedPostsController@store');

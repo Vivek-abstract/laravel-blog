@@ -16,9 +16,9 @@ class CheckAdmin
     public function handle($request, Closure $next)
     {
         if (! auth()->check()) {
-            return redirect()->home();
+            return redirect('/login');
         } else if (! auth()->user()->isAdmin()) {
-            return redirect()->home();
+            return redirect('/login');
         }
         return $next($request);
     }

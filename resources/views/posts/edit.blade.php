@@ -11,7 +11,7 @@
             <h1>Edit Post</h1>
 
             <hr>
-            <form method="POST" action="/posts/{{ $post->id }}" enctype="multipart/form-data">
+            <form method="POST" action="/posts/{{ $post->url_title }}" enctype="multipart/form-data">
 
                 @method('PATCH') 
                 @csrf
@@ -25,6 +25,12 @@
                     <label for="title">Subtitle</label>
                     <input type="text" class="form-control" id='title' name="subtitle" value="{{ $post->subtitle }}">
                 </div>
+
+                <div class="form-group">
+                    <label for="title">URL Title</label>
+                    <input type="text" class="form-control" id='title' name="url_title" value="{{ $post->url_title }}">
+                </div>
+
 
                 <div class="form-group">
                     <label for="body">Body</label>
@@ -47,7 +53,7 @@
 
             </form>
 
-            <form action="/posts/{{ $post->id }}" method="post">
+            <form action="/posts/{{ $post->url_title }}" method="post">
                 @method('DELETE')
                 @csrf 
 
@@ -58,7 +64,7 @@
 
             @if (auth()->user()->isAdmin())
                 
-                <form action="/verify/{{ $post->id }}" method="post">
+                <form action="/verify/{{ $post->url_title }}" method="post">
                     @csrf 
 
                     <div class="form-group">
