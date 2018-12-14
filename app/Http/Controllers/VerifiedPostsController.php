@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Http\Request;
 
 class VerifiedPostsController extends Controller
 {
-
-    public function __construct() {
-        $this->middleware('admin');
-    }
-
     public function index()
     {
+        $this->authorize('verify', Post::class);
         $posts = Post::latest()->filter(request(['month', 'year']))->unVerified()->get();
         return view('posts.unverified', compact('posts'));
     }
 
-    public function store(Post $post) {
+    public function store(Post $post)
+    {
+        $this->authorize('verify', $post);
+
         $post->verified = 1;
         $post->save();
 

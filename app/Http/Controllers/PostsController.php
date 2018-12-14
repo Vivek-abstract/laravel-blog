@@ -9,12 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['index', 'show']);
-        $this->middleware('verified-post')->only('show');
-        $this->middleware('author')->only(['edit', 'update', 'destroy']);
-    }
 
     public function index()
     {
@@ -25,17 +19,22 @@ class PostsController extends Controller
 
     public function show(Post $post)
     {
+        $this->authorize('view', $post);
         $content = Markdown::convertToHtml($post->body);
         return view('posts.show', compact('post', 'content'));
     }
 
     public function create()
     {
+        $this->authorize('create', Post::class);
+
         return view('posts.create');
     }
 
     public function store()
     {
+        $this->authorize('create', Post::class);
+
         $this->validate(request(), [
             'title' => 'required',
             'subtitle' => 'required',
@@ -65,11 +64,15 @@ class PostsController extends Controller
 
     public function edit(Post $post)
     {
+        $this->authorize('update', $post);
+
         return view('posts.edit', compact('post'));
     }
 
     public function update(Post $post)
     {
+        $this->authorize('update', $post);
+
         $this->validate(request(), [
             'title' => 'required',
             'subtitle' => 'required',
@@ -94,6 +97,8 @@ class PostsController extends Controller
 
     public function destroy(Post $post)
     {
+        $this->authorize('update', $post);
+
         $post->delete();
 
         session()->flash('message', 'Post deleted successfully');
