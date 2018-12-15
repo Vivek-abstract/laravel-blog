@@ -25,8 +25,14 @@
   <!-- Custom styles for this template -->
   <link href="/css/app.css" rel="stylesheet">
 
+  <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+  <script>
+    tinymce.init({
+      selector: '#mytextarea',
+      plugins: "lists image",
+    });
+  </script>
 </head>
-
 <body>
 
   <!-- Navigation -->

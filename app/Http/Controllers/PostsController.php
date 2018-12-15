@@ -20,8 +20,7 @@ class PostsController extends Controller
     public function show(Post $post)
     {
         $this->authorize('view', $post);
-        $content = Markdown::convertToHtml($post->body);
-        return view('posts.show', compact('post', 'content'));
+        return view('posts.show', compact('post'));
     }
 
     public function create()
@@ -38,7 +37,7 @@ class PostsController extends Controller
         $this->validate(request(), [
             'title' => 'required',
             'subtitle' => 'required',
-            'url_title' => 'required',
+            'url_title' => 'required|unique:posts,url_title',
             'body' => 'required',
             'image' => 'required|image|mimes:jpeg,bmp,png',
         ]);

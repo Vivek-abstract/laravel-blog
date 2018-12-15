@@ -34,7 +34,7 @@
 
                 <div class="form-group">
                     <label for="body">Body</label>
-                    <textarea name="body" id="body" class="form-control" rows="10" required>{{ $post->body }}</textarea>
+                    <textarea id="mytextarea" name="body" id="body" rows='10'>{{ $post->body }}</textarea>
                 </div>
 
                 <img src="{{ $post->image }}" class="img-fluid" alt="Post Banner">

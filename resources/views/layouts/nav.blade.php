@@ -30,8 +30,11 @@
     
                         @if (auth()->user()->isAdmin())
                             <a class="dropdown-item" href="/verify">Activate Posts</a>
-                        @endif
 
+                            @if (Request::is('posts/*'))
+                                <a class="dropdown-item" href="/posts/{{$post->url_title}}/edit">Edit Post</a>
+                            @endif
+                        @endif
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
                 </li>

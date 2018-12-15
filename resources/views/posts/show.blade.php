@@ -22,7 +22,7 @@
     <div class="container" id="content">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <?php echo $content ?>
+                {!! $post->body !!}
                 <h4>- {{ $post->user->name }}</h4>
             </div>
         </div>
