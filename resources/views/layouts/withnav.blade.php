@@ -25,19 +25,32 @@
   <!-- Custom styles for this template -->
   <link href="/css/app.css" rel="stylesheet">
 
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey={{ env('TINY_API_KEY') }}"></script>
+  <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey={{ env('TINY_API_KEY') }}"></script>
   <script>
     tinymce.init({
       selector: '#mytextarea',
       plugins: "lists image link",
     });
   </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126292348-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-126292348-3');
+
+  </script>
+
 </head>
+
+
 <body>
 
   <!-- Navigation -->
-  @include('layouts.blacknav')
-  @if ($flash = session('message'))
+  @include('layouts.blacknav') @if ($flash = session('message'))
 
   <div id="flash-message" class="alert alert-success">
     {{ $flash }}
