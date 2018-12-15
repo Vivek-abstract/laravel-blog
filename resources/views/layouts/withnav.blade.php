@@ -25,7 +25,7 @@
   <!-- Custom styles for this template -->
   <link href="/css/app.css" rel="stylesheet">
 
-  <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey={{ env('TINY_API_KEY') }}"></script>
   <script>
     tinymce.init({
       selector: '#mytextarea',
