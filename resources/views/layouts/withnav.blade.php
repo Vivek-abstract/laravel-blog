@@ -29,7 +29,7 @@
   <script>
     tinymce.init({
       selector: '#mytextarea',
-      plugins: "lists image",
+      plugins: "lists image link",
     });
   </script>
 </head>
