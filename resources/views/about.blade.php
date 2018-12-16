@@ -1,10 +1,10 @@
 @extends('layouts.master') 
 @section('hero-image')
 <header class="masthead">
-    <div class="jumbotron jumbotron-fluid" style="background-image: url('/img/about-bg.jpg')">
+    <div class="jumbotron jumbotron-fluid vertical-center" style="background-image: url('/img/about-bg.jpg')">
         <div class="overlay"></div>
-        <div class="container">
-            <div class="site-heading">
+        <div class="container text-center">
+            <div class="inner-container">
                 <h1 class="display-4 heading">About Me</h1>
                 <p>Who am I?</p>
             </div>

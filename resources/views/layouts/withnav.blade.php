@@ -32,7 +32,7 @@
     tinymce.init({
       selector: '#mytextarea',
       plugins: "lists image link codesample",
-      toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright | numlist bullist |  link image | codesample"
+      toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright | outdent indent | numlist bullist |  link image | codesample"
     });
   </script>
 
@@ -44,7 +44,6 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-126292348-3');
-
   </script>
 
 

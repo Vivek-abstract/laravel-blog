@@ -292,12 +292,6 @@ header.masthead .post-heading .meta a {
   }
 }
 
-@media (max-width: 576px) {
-  .heading {
-    margin-top: 0.5em !important;
-  }
-}
-
 .post-preview > a {
   color: #212529;
 }
@@ -481,6 +475,7 @@ footer .copyright {
   width: 100%;
   background-color: #212529;
   opacity: 0.5;
+  z-index: 1;
 }
 
 .site-heading {
@@ -492,13 +487,13 @@ footer .copyright {
 }
 
 .heading {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
   font-weight: bold;
 }
 
 .subheading {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .bottom {
@@ -517,7 +512,29 @@ blockquote {
   position: relative;
   padding-left: 1em;
   border-left: 0.2em solid #666666;
-  font-family: 'Roboto', serif;
+  font-family: "Roboto", serif;
   font-weight: 100;
+}
+
+.vertical-center {
+  min-height: 100%;
+  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh;
+  /* These two lines are counted as one :-)       */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container {
+  z-index: 2;
+}
+
+.no-margin {
+  margin-bottom: 0px;
+  font-size: 1.5rem;
 }
 

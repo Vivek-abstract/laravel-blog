@@ -2,12 +2,12 @@
 @section('hero-image')
 
 <header class="masthead">
-    <div class="jumbotron jumbotron-fluid" style="background-image: url('{{ $post->image }}')">
+    <div class="jumbotron jumbotron-fluid vertical-center" style="background-image: url('{{ $post->image }}')">
         <div class="overlay"></div>
         <div class="container">
-            <div class="site-heading">
-                <h2 class="display-4 heading">{{$post->title}}</h2>
-                <p>{{$post->subtitle}}</p>
+            <div class="inner-container text-center">
+                <h3 class="display-4 heading">{{$post->title}}</h3>
+                <p class="no-margin">{{$post->subtitle}}</p>
             </div>
         </div>
     </div>
