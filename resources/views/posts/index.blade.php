@@ -7,7 +7,7 @@
         <header class="masthead">
             <div class="jumbotron jumbotron-fluid vertical-center" style="background-image: url('/img/home-bg.jpg')">
                 <div class="overlay"></div>
-                <div class="container text-center">
+                <div class="container text-center dont-overlay">
                     <div class="inner-container">
                         <h1 class="display-4 heading">Vivek's Blog</h1>
                         <p class="no-margin">A place to share some knowledge </p>
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </header>
-        <a href="#content"><i class="fas fa-angle-down fa-4x bottom"></i></a>
+        <a href="#content"><i class="fas fa-angle-down fa-4x bottom dont-overlay"></i></a>
 
     @endsection
  

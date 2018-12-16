@@ -3,7 +3,7 @@
 <header class="masthead">
     <div class="jumbotron jumbotron-fluid vertical-center" style="background-image: url('/img/about-bg.jpg')">
         <div class="overlay"></div>
-        <div class="container text-center">
+        <div class="container text-center dont-overlay">
             <div class="inner-container">
                 <h1 class="display-4 heading">About Me</h1>
                 <p>Who am I?</p>
@@ -11,7 +11,7 @@
         </div>
     </div>
 </header>
-<a href="#content"><i class="fas fa-angle-down fa-4x bottom"></i></a>
+<a href="#content"><i class="fas fa-angle-down fa-4x bottom dont-overlay"></i></a>
 
 @endsection
  

@@ -480,6 +480,12 @@ footer .copyright {
     font-weight: bold;
 }
 
+@media (max-width: 576px) { 
+    .heading {    
+        font-size: 2.5rem;
+    }
+ }
+
 .subheading {
     font-family: "Open Sans", sans-serif;
 }
@@ -512,11 +518,12 @@ blockquote {
     align-items: center;
 }
 
-.container {
+.dont-overlay {
     z-index: 2;
 }
 
 .no-margin {
     margin-bottom: 0px;
-    font-size: 1.5rem;
+    margin-top: 1rem;
+    font-size: 1.5rem !important;
 }

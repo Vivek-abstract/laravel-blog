@@ -4,7 +4,7 @@
 <header class="masthead">
     <div class="jumbotron jumbotron-fluid vertical-center" style="background-image: url('{{ $post->image }}')">
         <div class="overlay"></div>
-        <div class="container">
+        <div class="container dont-overlay">
             <div class="inner-container text-center">
                 <h3 class="display-4 heading">{{$post->title}}</h3>
                 <p class="no-margin">{{$post->subtitle}}</p>
@@ -12,7 +12,7 @@
         </div>
     </div>
 </header>
-<a href="#content"><i class="fas fa-angle-down fa-4x bottom"></i></a>
+<a href="#content"><i class="fas fa-angle-down fa-4x bottom dont-overlay"></i></a>
 
 @endsection
 
