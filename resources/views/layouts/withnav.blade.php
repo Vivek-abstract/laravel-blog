@@ -29,7 +29,8 @@
   <script>
     tinymce.init({
       selector: '#mytextarea',
-      plugins: "lists image link",
+      plugins: "lists image link codesample",
+      toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright | numlist bullist |  link image | codesample"
     });
   </script>
 
