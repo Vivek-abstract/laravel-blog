@@ -24,6 +24,8 @@
 
   <!-- Custom styles for this template -->
   <link href="/css/app.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/prism.css">
+  <script src="/js/prism.js"></script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126292348-3"></script>
